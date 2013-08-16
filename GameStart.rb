@@ -118,7 +118,7 @@ end
 
 
       puts "Current Game Data "
-      puts "Current Game Word :- "+@currentGameWord.getWord
+      #puts "Current Game Word :- "+@currentGameWord.getWord
       puts "Wrong Inputs := " + userWrongInputCount.to_s
       print "Previous Entered Characters :- "
 
