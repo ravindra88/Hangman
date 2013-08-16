@@ -65,14 +65,20 @@ end
 
 
     if(winGameFlag)
+      puts "##############"
       puts "You Won."
+      puts "##############"
     end
 
     if(lostGameFlag)
+      puts "##############"
       puts "You Lost."
+      puts "##############"
     end
 
-    print "Want to Play New Game Enter 'n' or 'N' to Exit :- "
+
+    puts "Enter 'n' or 'N' to Exit."
+    puts "Enter any key to play := "
     userInput = gets.chomp
     gameCompleteFlag = false
 
@@ -89,12 +95,11 @@ end
     @user.updateGamesPlayed
     currentCount = 0
     @currentGameWord = GameWord.new
-
     userGameWord = Array.new(@currentGameWord.getWordLength, '-')
-
     userWrongInputCount = 0
     previousEntered = Array.new # keep track for previous characters
     charFoundFlag = false
+
     #word Find loop
     ########
     while gameCompleteFlag do
@@ -109,7 +114,7 @@ end
       puts 'Games Won := '+ @user.getGamesWon.to_s
       puts 'Games Lost := '+ @user.getGamesLost.to_s
 
-      puts "========================================="
+      puts "==========================================================="
 
 
       puts "Current Game Data "
@@ -125,11 +130,16 @@ end
       puts ""
 
       if alreadyEnteredFlag
+        puts "###################"
         puts "Already Entered."
+        puts "###################"
+        charFoundFlag = false
       end
 
       if charFoundFlag
+        puts "###################"
         puts "Character Not Found."
+        puts "###################"
       end
 
       printHangman(userWrongInputCount) # print Graphics
@@ -141,8 +151,6 @@ end
       puts ""
       puts "Please Enter Character :- "
       userChar = (gets.chomp).downcase
-
-      puts userChar
 
       if previousEntered.index(userChar)
         #puts "Already Entered ."
