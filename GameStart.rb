@@ -153,46 +153,6 @@ end
       puts "Please Enter Character :- "
       userChar = (gets.chomp).downcase
 
-
-      puts "Need to compress..."
-      puts "#####################################################################################"
-
-      temp = @currentGameWord.getWord.enum_for(:scan,userChar).map { Regexp.last_match.begin(0) }
-
-      if(temp.length > 0)
-
-        temp.each do |t|
-          userGameWord[t] = userChar
-        end
-
-        userGameWord.each do |r|
-          print " " + r
-        end
-
-      end
-
-
-      puts temp
-
-
-      puts " length " +temp.length.to_s
-      puts "size "+temp.size.to_s
-
-      #puts temp.keys
-
-      puts "sdsdsdsdsdddddddddddddddddddddddd"
-
-      i = -1
-      all = []
-      while i = (@currentGameWord.getWord).index(userChar,i+1)
-        all << i
-      end
-      all
-
-      puts "#####################################################################################"
-
-
-
       if previousEntered.index(userChar)
         #puts "Already Entered ."
         alreadyEnteredFlag = true
@@ -206,8 +166,6 @@ end
       while wordFlag do
 
         charIndex = @currentGameWord.findCharacter(userChar,startPosition)
-
-
 
 #        puts charIndex
         if(charIndex)
