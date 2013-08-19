@@ -52,9 +52,12 @@ end
   winGameFlag = false
   lostGameFlag = false
   alreadyEnteredFlag = false
-
+  tempGameWord = ""
   # for word Game
   begin
+
+    system('cls')
+    #system('clear')
 
     puts "############################################################"
     puts "#################### Hang Man Game #######################"
@@ -67,12 +70,14 @@ end
     if(winGameFlag)
       puts "##############"
       puts "You Won."
+      puts "Game Word :- "+ tempGameWord
       puts "##############"
     end
 
     if(lostGameFlag)
       puts "##############"
       puts "You Lost."
+      puts "Game Word :- "+ tempGameWord
       puts "##############"
     end
 
@@ -95,6 +100,7 @@ end
     @user.updateGamesPlayed
     currentCount = 0
     @currentGameWord = GameWord.new
+    tempGameWord = @currentGameWord.getWord
     userGameWord = Array.new(@currentGameWord.getWordLength, '-')
     userWrongInputCount = 0
     previousEntered = Array.new # keep track for previous characters
@@ -118,10 +124,9 @@ end
 
 
       puts "Current Game Data "
-      puts "Current Game Word :- "+@currentGameWord.getWord
+      #puts "Current Game Word :- "+@currentGameWord.getWord
       puts "Wrong Inputs := " + userWrongInputCount.to_s
       print "Previous Entered Characters :- "
-
 
       previousEntered.each do |r|
         print " " + r
