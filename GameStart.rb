@@ -160,7 +160,7 @@ end
 
       puts ""
 
-
+      #######################
       if correctInputFlag
         puts "###################"
         puts "Please input correct character."
