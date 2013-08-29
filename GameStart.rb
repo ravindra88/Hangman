@@ -1,6 +1,31 @@
+
 require './game_word'   # Load File or Class word operation
 require './user_details'   # Load File or Class for User Details
 
+
+
+   #print hangman
+#def hangee(a)
+#  case a
+#    #when 0
+#    #  guy = " \t|--- \n\t| \n\t| \n\t| \n\t| \n\t|_____"
+#    #when 1
+#    #  guy = " \t|--- \n\t|  O \n\t| \n\t| \n\t|_____"
+#    when 0
+#      guy = " \t|--- \n\t|  O \n\t|  | \n\t| \n\t|_____"
+#    when 1
+#      guy = " \t|--- \n\t|  O \n\t|  |/ \n\t| \n\t| \n\t|_____"
+#    when 2
+#      guy = " \t|--- \n\t|  O \n\t| \\|/ \n\t|\n\t| \n\t|_____"
+#    when 3
+#      guy = " \t|--- \n\t|  O \n\t| \\|/ \n\t| / \n\t| \n\t|_____"
+#    when 4
+#      guy = " \t|--- \n\t|--- \n\t|  O \n\t| \\|/ \n\t| /\\ \n\t| \n\t|_____"
+#    when 5
+#      guy = " \t|--- \n\t|  | \n\t|  O \n\t| \\|/ \n\t| /|\\ \n\t|_____"
+#  end
+#  puts guy+"\n\n"
+#end
 
 # print graphics
 def printHangman(a)
@@ -105,6 +130,7 @@ end
     userWrongInputCount = 0
     previousEntered = Array.new # keep track for previous characters
     charFoundFlag = false
+    correctInputFlag = false
 
     #word Find loop
     ########
@@ -134,6 +160,16 @@ end
 
       puts ""
 
+
+      if correctInputFlag
+        puts "###################"
+        puts "Please input correct character."
+        puts "###################"
+        correctInputFlag = false
+        #        charFoundFlag = false
+      end
+
+      #########
       if alreadyEnteredFlag
         puts "###################"
         puts "Already Entered."
@@ -147,6 +183,7 @@ end
         puts "###################"
       end
 
+      #hangee(userWrongInputCount)
       printHangman(userWrongInputCount) # print Graphics
       print "your Word :=  "
 
@@ -158,25 +195,48 @@ end
       puts "Please Enter Character :- "
       userChar = (gets.chomp).downcase
 
-      if previousEntered.index(userChar)
-        #puts "Already Entered ."
-        alreadyEnteredFlag = true
+      # check input is a char or not
+      if !( userChar.length == 1 && userChar.match(/^[[:alpha:]]$/))
+        correctInputFlag = true
         wordFlag = false
-      else
-        previousEntered.push(userChar)
+        charFoundFlag = false
         alreadyEnteredFlag = false
-        wordFlag = true
+      else
+        # check if already entered or not
+        if previousEntered.index(userChar)
+          #puts "Already Entered ."
+          alreadyEnteredFlag = true
+          wordFlag = false
+        else
+          previousEntered.push(userChar)
+          alreadyEnteredFlag = false
+          wordFlag = true
+        end
       end
+
+      ## check if already entered or not
+      #if previousEntered.index(userChar)
+      #  #puts "Already Entered ."
+      #  alreadyEnteredFlag = true
+      #  wordFlag = false
+      #else
+      #  previousEntered.push(userChar)
+      #  alreadyEnteredFlag = false
+      #  wordFlag = true
+      #
+      #  #        @currentGameWord.allCharacterPosition()
+      #
+      #end
 
       while wordFlag do
 
         charIndex = @currentGameWord.findCharacter(userChar,startPosition)
 
-#        puts charIndex
+        #        puts charIndex
         if(charIndex)
           startPosition = startPosition + charIndex + 1
           userGameWord[startPosition - 1] = userChar
- #         print userGameWord
+          #         print userGameWord
           currentCount += 1
           foundCount += 1
           charFoundFlag = false
