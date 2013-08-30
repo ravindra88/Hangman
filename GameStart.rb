@@ -169,7 +169,7 @@ end
         #        charFoundFlag = false
       end
 
-      #    #####
+      #    ##### #############################################
       if alreadyEnteredFlag
         puts "###################"
         puts "Already Entered."
