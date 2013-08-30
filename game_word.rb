@@ -1,7 +1,7 @@
 class GameWord
   # To change this template use File | Settings | File Templates.
 
-  ############################
+  ###################################
   # initialize all constraints
   def initialize
     flag = true
